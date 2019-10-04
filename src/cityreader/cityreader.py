@@ -82,13 +82,32 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+try:
+  latitude_0 = float(input('Enter the first latitude: '))
+  longitude_0 = float(input('Enter the first longitude: '))
+  latitude_1 = float(input('Enter the second latitude: '))
+  longitude_1 = float(input('Enter the second longitude: '))
+except ValueError:
+  print('Values must be real numbers.')
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
 
-  # TODO Ensure that the lat and lon valuse are all floats
+  # TODO Ensure that the lat and lon valuse are all floats - done above, why would you check the values here?!
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
+  if lat1 > lat2:
+    lat1, lat2 = lat2, lat1
+  
+  if lon1 > lon2:
+    lon1, lon2 = lon2, lon1
+
+  for city in cities:
+    within_latitude = ((city.lat >= lat1) and (city.lat <= lat2))
+    within_longitude = ((city.lon >= lon1) and (city.lon <= lon2))
+    
+    if within_latitude and within_longitude:
+      within.append(city)
 
   return within
