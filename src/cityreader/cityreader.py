@@ -39,10 +39,10 @@ def cityreader(cities=[]):
 
     for city in city_reader:
       name = city[0]
-      lat = float(city[3])
-      lon = float(city[4])
+      latitude = float(city[3])
+      longitude = float(city[4])
 
-      cities.append(City(name, lat, lon))
+      cities.append(City(name, latitude, longitude))
 
   return cities
 
